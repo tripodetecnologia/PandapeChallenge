@@ -1,0 +1,23 @@
+﻿@using System.Collections;
+@using Challenge.Common;
+@using Challenge.Domain.DTO.ViewModel;
+
+<div class="sidebar bg-gradient-primary">
+
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="height:100%;">
+
+        <div class="text-center d-none d-md-inline">
+            <hr class="sidebar-divider my-0 mb-3 bg-gray-200">
+            <button class="rounded-circle border-0 btn-default bg-secondary" id="sidebarToggle" data-tippy-content="Pulse para recoger o expandir el menú."></button>
+            <hr class="sidebar-divider my-0 bg-gray-200">
+        </div>
+
+        <hr class="sidebar-divider">
+        <li class="nav-item" data-tippy-content="Pulse para ir al módulo de candidatos." id="nav-candidates">
+            <a class="nav-link" href="@Url.Action("Index", "Candidates")">
+                <i class="fa fa-list-alt"></i>
+                <span>Candidatos</span>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,47 @@
+header div#bar-govco {
+    width: 100% !important;
+    display: block !important;
+    background: #1f5a40 !important;
+    border-bottom: 3px solid #81d02b;    
+}
+
+    header div#bar-govco .container {
+        display: flex !important;
+        justify-content: space-between !important;
+    }
+
+        header div#bar-govco .container img {
+            max-height: 25px;
+            margin: 5px;
+        }
+
+.btn-user {
+    border-radius: 10rem !important;
+    font-size: inherit !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    max-width: 200px;
+}
+.logologin {
+    width: 130px;
+    height: 80px;
+}
+.footer {
+    border-top: 3px solid #81d02b;
+    max-height: 50px;
+    text-align: center;    
+}
+
+    .footer p {
+        color: #fff;
+        background-color: #153C2B;
+    }
+.green-body {
+    color: #277451;
+}
+body {
+    background: url("../img/background_pca.jpg") center center fixed;
+    
+}

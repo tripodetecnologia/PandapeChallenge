@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="~/img/favicon.ico" />
+    <link rel="stylesheet" href="~/css/sb-admin-2.css" />
+    <link href="~/css/bootstrap/bootstrap-datepicker.min.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", required: false)
+
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap-notify.js"></script>
+    <link href="~/css/validation.css" rel="stylesheet" asp-append-version="true" />    
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true"/>    
+    <link href="~/vendor/jquery-datetimepicker/dist/css/jquery.datetimepicker.min.css" rel="stylesheet" />
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/tippy.js"></script>    
+    <script src="~/js/moment.min.js"></script>    
+    <script src="~/vendor/jquery-datetimepicker/dist/js/jquery.datetimepicker.full.min.js"></script>
+</head>
+
+<body id="bodyAll" class="bg-white">
+
+    <main role="main">
+        <partial name="_ModalPartial" />
+        <div id="wrapper">
+            <partial name="_SideBar" />
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column mouseevent">
+
+                <!-- Main Content -->
+                <div id="content">
+                    <partial name="_TopBar" />
+                    <input type="hidden" value="@ViewBag.UrlBase" id="baseUrl" />
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-end">
+        </div>
+    </footer>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin-2.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/jquery.numeric.js"></script>    
+    <script src="~/vendor/jquery-mask/jquery.mask.min.js"></script>
+
+    @if (IsSectionDefined("Scripts"))
+    {
+        <!-- Page level plugins -->
+        @await RenderSectionAsync("Scripts", required: false)
+    }
+    @if (IsSectionDefined("Css"))
+    {
+        @await RenderSectionAsync("Css", required: false)
+    }
+        
+    <script>
+        $(function () {
+            CreateAllTooltips();
+            $(document).ready(function () {                
+                $("#accordionSidebar a").each(function (index, element) {
+                    if ($(element).attr('href') == window.location.pathname) {
+                        if ($(element).hasClass('collapse-item') == true) {
+                            $(element).parent().parent().parent().addClass("active");
+                            $(element).parent().parent().addClass("show");
+                            $(element).addClass("active");
+                        } else {
+                            $(element).parent().addClass("active");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

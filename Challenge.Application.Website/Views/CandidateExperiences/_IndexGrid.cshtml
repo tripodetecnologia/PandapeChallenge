@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Challenge.Application.Website.Models.CandidateExperiencesModel>
+@using NonFactors.Mvc.Grid
+@{
+    var urlEdit = @Url.Action("Edit", "CandidateExperiences");
+    var urlDelete = @Url.Action("Delete", "CandidateExperiences");
+}
+
+@(Html.Grid(Model).Build(columns =>
+{
+    columns.Add(model => model.Company).Titled("Empresa");
+    columns.Add(model => model.Job).Titled("Cargo");    
+    columns.Add(model => model.Salary).Titled("Salario").Formatted("{0:C2}").Filterable(false);
+    columns.Add(model => model.BeginDate).Titled("Fecha Ingreso").RenderedAs(s => s.BeginDate!.Value.ToString("dd/MM/yyyy")).Formatted("{0:d}").UsingDefaultFilterMethod("equals");
+    columns.Add(model => model.EndDate).Titled("Fecha Retiro").RenderedAs(s => (s.EndDate.HasValue ? s.EndDate.Value.ToString("dd/MM/yyyy") : string.Empty)).Formatted("{0:d}").UsingDefaultFilterMethod("equals");
+    columns.Add(model => model.Description).Titled("Descripción");
+    columns.Add().Titled("Acciones").RenderedAs(s => $"<div class='d-flex'><i class='fa fa-edit btn-lg text-primary-icon ' tabindex='0' data-tippy-content='Editar' onclick=\"CandidateExperiences.OpenEditExperiences('{urlEdit}?id={s.IdCandidateExperience}');\"></i> <i class='fa fa-trash btn-lg text-danger-icon ' tabindex='0' data-tippy-content='Eliminar' style='margin-left:8px' onclick=\"CandidateExperiences.DeleteExperience('{urlDelete}?id={s.IdCandidateExperience}', '{s.IdCandidate}')\"></i></div>").Encoded(false);
+})
+)

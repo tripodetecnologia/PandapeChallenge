@@ -1,0 +1,63 @@
+﻿@using Challenge.Application.Website.Models
+@model Challenge.Application.Website.Models.CandidatesModel
+
+<!-- Modal -->
+
+<div class="modal-header">
+    <h5 class="modal-title" id="modal-user-create-title">@ViewBag.TitleModal</h5>
+</div>
+<div class="modal-body" id="modal-user-create-body" style="overflow-y: auto;">
+    <form asp-action="CreateOrUpdate" asp-controller="Candidates" data-ajax="true" data-ajax-method="POST" id="formCandidates">
+
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.IdCandidate)
+        @Html.HiddenFor(model => model.InsertDate)
+        @Html.HiddenFor(model => model.ModifyDate)
+
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control col-md-12 col-xs-12 required", placeholder = "Digite el nombre", @maxlength = 50 })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(model => model.Surname, new { @class = "form-control col-md-12 col-xs-12 required", placeholder = "Digite el apellido", @maxlength = 150 })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="input-group dp-date col-md-12 col-sm-12 col-xs-12">   
+                        @{
+                            string birthDate = (Model != null ? Model.Birthdate.ToString("dd/MM/yyyy") : "");
+                        }
+                        <input type="hidden" value="@birthDate" id="hdf_Birthdate" />
+                        @Html.TextBoxFor(model => model.Birthdate, new { @class = "form-control col-md-12 col-xs-12 required", @style = "border-radius: .35rem;" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control col-md-12 col-xs-12 required email", placeholder = "Digite el correo electrónico", @maxlength = 250 })
+                    </div>
+                </div>
+            </div>                      
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" onclick="hideModalPartial();" data-tippy-content="Pulse para Cancelar.">Cancelar</button>
+    <button type="button" class="btn btn-primary" onclick="Candidates.SaveCandidate();" data-tippy-content="Pulse para Guardar.">Guardar</button>
+</div>
+<script>
+    $(function () {
+        Candidates.Init();
+    });    
+</script>

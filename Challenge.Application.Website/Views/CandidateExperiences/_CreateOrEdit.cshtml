@@ -1,0 +1,90 @@
+﻿@using Challenge.Application.Website.Models
+
+@model Challenge.Application.Website.Models.CandidateExperiencesModel
+
+<!-- Modal -->
+
+<div class="modal-header">
+    <h5 class="modal-title" id="modal-user-create-title">@ViewBag.TitleModal</h5>
+</div>
+<div class="modal-body" id="modal-user-create-body" style="overflow-y: auto;">
+    <form asp-action="CreateOrUpdate" asp-controller="CandidateExperiences" data-ajax="true" data-ajax-method="POST" id="formExperience">
+
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.IdCandidateExperience)
+        @Html.HiddenFor(model => model.IdCandidate)
+        @Html.HiddenFor(model => model.InsertDate)
+        @Html.HiddenFor(model => model.ModifyDate)        
+        
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(model => model.Company, new { @class = "form-control col-md-12 col-xs-12 required", placeholder = "Digite la empresa", @maxlength = 100 })
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.LabelFor(model => model.Job, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(model => model.Job, new { @class = "form-control col-md-12 col-xs-12 required", placeholder = "Digite el cargo", @maxlength = 100 })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(model => model.Salary, new { @class = "form-control col-md-12 col-xs-12 inputPositiveInput2d required zerovalue", @data_message="Salario debe ser mayor que cero.", placeholder = "Digite el salario", @maxlength = 6 })
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.LabelFor(model => model.BeginDate, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="input-group dp-date col-md-12 col-sm-12 col-xs-12">
+                        @{
+                            string beginDate = (Model != null && Model.BeginDate.HasValue ? (Model.BeginDate).Value.ToString("dd/MM/yyyy") : "");
+                        }
+                        <input type="hidden" value="@beginDate" id="hdf_BeginDate" />
+                        @Html.TextBoxFor(model => model.BeginDate, new { @class = "form-control col-md-12 col-xs-12 required daterange", @style = "border-radius: .35rem;", @data_datevalue="minDate", @data_compare="EndDate", @data_message = "La fecha inicial debe ser menor que la fecha final." })
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="input-group dp-date col-md-12 col-sm-12 col-xs-12">
+                        @{
+                            string endDate = (Model != null && Model.EndDate.HasValue ? (Model.EndDate).Value.ToString("dd/MM/yyyy") : "");
+                        }
+                        <input type="hidden" value="@endDate" id="hdf_EndDate" />
+                        @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control col-md-12 col-xs-12 daterange", @style = "border-radius: .35rem;", @data_datevalue="maxDate", @data_compare="BeginDate", @data_message = "La fecha final debe ser mayor que la fecha inicial." })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-form-label col-md-12 col-sm-12 col-xs-12" })
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @Html.TextAreaFor(model => model.Description, new {@class = "form-control col-md-12 col-xs-12 required", placeholder = "Ingrese la descripción", @maxlength = 4000, @rows=3, @style="resize:none;" })
+                    </div>
+                </div>                
+            </div>
+           
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" onclick="hideModalPartial();" data-tippy-content="Pulse para Cancelar.">Cancelar</button>
+    <button type="button" class="btn btn-primary" onclick="CandidateExperiences.SaveExperience();" data-tippy-content="Pulse para Guardar.">Guardar</button>
+</div>
+
+<script>
+
+    $(function () {
+        CandidateExperiences.Init();
+    });
+
+</script>

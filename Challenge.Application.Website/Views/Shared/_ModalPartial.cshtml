@@ -1,0 +1,55 @@
+﻿@* Modal Question *@
+<div class="modal-backdrop fade show" id="backModalQuestion" style="z-index:9998;display:none"></div>
+<div class="modal fade" id="modalQuestion" tabindex="-1" role="dialog" style="z-index:9999;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:100%; top:25%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalQuestion">FPI</h5>
+            </div>
+            <div class="modal-body">
+                <p id="messageModalQuestion"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" id="btnNoModalQuestion">No</button>
+                <button type="button" class="btn btn-primary" id="btnSiModalQuestion">Sí</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Partial*@
+<div class="modal fade mouseevent" id="modal-partial" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="width:100%; top:4%;">
+        <div class="modal-content" id="modal-partial-content">
+        </div>
+    </div>
+</div>
+
+@*Modal Partial XL*@
+<div class="modal fade mouseevent" id="modal-partial-xl" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document" style="width:100%; top:25%;">
+        <div class="modal-content" id="modal-partial-content-xl">
+        </div>
+    </div>
+</div>
+
+@* Modal Loading *@
+<div class="modal-backdrop fade show" id="modal-loading-back" style="z-index:999998;display:none"></div>
+<div class="modal bd-example-modal-lg" id="modal-loading" data-backdrop="static" data-keyboard="false" tabindex="-1" style="z-index:999999;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" id="modal-loading-content">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span id="modal-loading-msg"></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade mouseevent" id="modal-partial" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="width:100%; top:4%;">
+        <div class="modal-content" id="modal-partial-content">
+        </div>
+    </div>
+</div>

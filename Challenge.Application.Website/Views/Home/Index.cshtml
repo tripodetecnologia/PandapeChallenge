@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
+                    <div class="mt-5" style="height:150px; max-width:500px; display: block; margin-left: auto; margin-right: auto; width: 50%; justify-content: center;">
+                        <h2>Prueba Técnica</h2>
+                        <h2>Ruben Dario Sanchez Hernandez</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="msgchangepass" value="@ViewBag.MessageChangePass" />
+</div>
+
+<script>
+    $(function () {
+        if ($("#msgchangepass").val() == 'S') {
+            showAlert("Contraseña actualizada correctamente.", "success", false, 20, 10);
+        }
+    });
+</script>  
